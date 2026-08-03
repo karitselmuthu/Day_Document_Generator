@@ -1,8 +1,0 @@
-Document ID: FAQ-555
-Type: Frequently Asked Questions
-
-Q1: Can I increase my transfer limit for one high-value transaction?
-A1: Yes. A temporary limit increase can be approved after enhanced identity verification and purpose-of-transfer confirmation.
-
-Q2: Can I increase my transfer limit for one high-value transaction?
-A2: Yes. A temporary limit increase can be approved after enhanced identity verification and purpose-of-transfer confirmation.

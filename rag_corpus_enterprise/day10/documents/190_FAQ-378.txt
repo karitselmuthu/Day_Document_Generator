@@ -1,8 +1,0 @@
-Document ID: FAQ-378
-Type: Frequently Asked Questions
-
-Q1: Can I increase my transfer limit for one high-value transaction?
-A1: Yes. A temporary limit increase can be approved after enhanced identity verification and purpose-of-transfer confirmation.
-
-Q2: Why was my card payment declined even though funds are available?
-A2: The payment may fail due to merchant category restrictions, risk rules, or network timeout. Retry once and contact support with reference ID if it fails again.

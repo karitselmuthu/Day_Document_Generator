@@ -65,6 +65,7 @@ def daily_churn(
     min_new_docs: int = 5,
     max_new_docs: int = 10,
     s3_storage=None,
+    start_date: datetime.datetime | None = None,
 ) -> int:
     if day < 1:
         raise ValueError("day must be >= 1")
@@ -73,8 +74,17 @@ def daily_churn(
     if min_new_docs > max_new_docs:
         raise ValueError("min_new_docs must be <= max_new_docs")
 
-    prev_day = os.path.join(base_dir, f"day{day-1}")
-    day_path = os.path.join(base_dir, f"day{day}")
+    if start_date is None:
+        start_date = datetime.datetime.now()
+    
+    # Calculate date for this day (add days to start_date)
+    current_date = start_date + datetime.timedelta(days=day - 1)
+    date_folder = current_date.strftime("%d_%m_%y")
+    prev_date = start_date + datetime.timedelta(days=day - 2)
+    prev_date_folder = prev_date.strftime("%d_%m_%y")
+    
+    prev_day = os.path.join(base_dir, prev_date_folder)
+    day_path = os.path.join(base_dir, date_folder)
     os.makedirs(day_path, exist_ok=True)
 
     docs: list[str] = []
@@ -109,7 +119,7 @@ def daily_churn(
         with open(manifest_path, "r", encoding="utf-8") as file:
             manifest_content = file.read()
 
-        upload_result = s3_storage.upload_documents_batch(day, documents_with_ids, manifest_content)
+        upload_result = s3_storage.upload_documents_batch(date_folder, documents_with_ids, manifest_content)
         if upload_result["total_failed"] > 0:
             import logging
             logger = logging.getLogger(__name__)
@@ -127,10 +137,14 @@ def generate_churn_over_days(
     min_new_docs: int = 5,
     max_new_docs: int = 10,
     s3_storage=None,
+    start_date: datetime.datetime | None = None,
 ) -> list[int]:
     if days < 1:
         raise ValueError("days must be >= 1")
 
+    if start_date is None:
+        start_date = datetime.datetime.now()
+    
     rng = random.Random(seed)
     counts: list[int] = []
     for day in range(1, days + 1):
@@ -142,6 +156,7 @@ def generate_churn_over_days(
             min_new_docs=min_new_docs,
             max_new_docs=max_new_docs,
             s3_storage=s3_storage,
+            start_date=start_date,
         )
         counts.append(count)
     return counts
