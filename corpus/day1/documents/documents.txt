@@ -1,107 +1,6 @@
-{
-  "document_id": "LOG-973",
-  "type": "log",
-  "timestamp": "2026-08-03T19:51:10.709567",
-  "severity": "INFO",
-  "application": "PolicyManagement",
-  "component": "policy-api",
-  "trace_id": "fbfa919a5e7a75390e73b51438b72460",
-  "span_id": "823480f686b99fbf",
-  "cloud": {
-    "platform": "AWS EKS",
-    "resource": {
-      "account_id": "aws-prod-7145",
-      "region": "ap-south-1",
-      "cluster_name": "eks-claims-prod"
-    }
-  },
-  "k8s": {
-    "k8s.pod.name": "policy-api-775f95f9b4-s9wr2",
-    "k8s.namespace.name": "insurance-shared"
-  },
-  "payload": {
-    "duration_ms": 1479,
-    "retry_count": 0,
-    "shard_id": "shard-04",
-    "message": "Synthetic operational event for workload monitoring.",
-    "recovery_action": "rejected request because role mapping was missing"
-  }
-}
----
-Document ID: AUD-938
-Type: Audit Report
-Title: Access Governance Audit Findings
-Audit Period: 2026-Q2
-Severity Mix: High=2, Medium=4, Low=5
-
-Findings:
-- Root Cause: Delayed incident closure after policy exception approval
-- Impact: Regulatory reporting quality may degrade under peak transaction load.
-- Recommendation: Enforce preventive controls in CI/CD and IAM workflows.
-- Target Date: 2026-01-15
-
-Management Response:
-Control owners accepted findings and committed remediation milestones.
----
-Document ID: DBS-225
-Type: Database Schema
-System: Core Financial Ledger
-
-Tables:
-1. accounts(account_id PK, customer_id, status, opened_at, risk_tier)
-2. transactions(txn_id PK, account_id FK, amount, currency, channel, created_at)
-3. claims(claim_id PK, policy_id, claimant_id, status, reserve_amount, submitted_at)
-4. audit_events(event_id PK, entity_type, entity_id, actor_id, action, event_ts)
-
-Security Metadata:
-- accounts.customer_id encrypted with AES-256 at rest.
-- transactions.amount masked in non-production replicas.
-- audit_events retained for 7 years and immutable by design.
-
-Indexing Notes:
-- btree on transactions(account_id, created_at)
-- gin on audit_events(action)
-- partial index on claims(status) where status in ('open', 'investigating')
----
-Document ID: FEE-407
-Type: Fee Schedule
-Currency: USD
-Effective Date: 2026-05-01
-
-Charges:
-| Fee Type | Amount | Rule | Notes |
-| --- | ---: | --- | --- |
-| Monthly Account Maintenance | 10.00 | Waived if balance > 5000 | Retail checking |
-| Overdraft Penalty | 31.00 | Max 1 per day | Does not apply to declined transaction |
-| Domestic Wire Transfer | 12.00 | Per successful transfer | Same-day settlement |
-| International Wire Transfer | 44.00 | FX margin applies | Compliance review required |
-| Paper Statement | 6.00 | Per month | Free for senior accounts |
-
-Interest Rates:
-- Savings Tier 1: 1.25%
-- Savings Tier 2: 2.10%
-- Unsecured Overdraft APR: 19.75%
----
-Document ID: SOP-843
-Type: Standard Operating Procedure
-Domain: back-office settlement
-Version: 2.5
-
-Procedure Steps:
-1. Validate request ticket and confirm customer consent artifacts.
-2. Verify control checkpoints in workflow system before processing.
-3. Execute transaction in core platform and capture reference ID.
-4. Perform dual-control verification for high-risk actions.
-5. Send completion notification and archive case evidence.
-
-Quality Controls:
-- Supervisor sampling: 10% of daily processed cases.
-- SLA target: 95% completion within 30 minutes.
-- Escalation threshold: any unresolved exception over 2 hours.
----
-Document ID: CIR-574
+Document ID: CIR-791
 Type: Claims Investigation Report
-Claim Reference: CLM-919139
+Claim Reference: CLM-275503
 Policyholder Segment: commercial
 
 Case Summary:
@@ -116,19 +15,478 @@ Evidence Review:
 Recommendation:
 Route case to fraud desk for secondary review before payout authorization.
 ---
-Document ID: REG-768
+Document ID: PRIV-326
+Type: Data Privacy Notice
+Jurisdiction: GDPR
+Retention Policy: Customer profile data retained for 7 years after account closure.
+
+Customer Rights:
+1. Right to access personal data and processing rationale.
+2. Right to request correction of inaccurate records.
+3. Right to request deletion subject to legal retention obligations.
+4. Right to restrict or object to certain processing activities.
+5. Right to receive exportable copy of personal data.
+
+Processing Purposes:
+- Fraud prevention and transaction risk scoring
+- Claims lifecycle servicing and legal compliance
+- Product personalization and service quality analytics
+---
+Document ID: SOP-867
+Type: Standard Operating Procedure
+Domain: branch teller cash operations
+Version: 2.0
+
+Procedure Steps:
+1. Validate request ticket and confirm customer consent artifacts.
+2. Verify control checkpoints in workflow system before processing.
+3. Execute transaction in core platform and capture reference ID.
+4. Perform dual-control verification for high-risk actions.
+5. Send completion notification and archive case evidence.
+
+Quality Controls:
+- Supervisor sampling: 10% of daily processed cases.
+- SLA target: 95% completion within 30 minutes.
+- Escalation threshold: any unresolved exception over 2 hours.
+---
+Document ID: AUD-143
+Type: Audit Report
+Title: External Compliance Assurance Letter
+Audit Period: 2026-Q1
+Audit Date: 2026-09-10
+
+EXECUTIVE SUMMARY:
+Audit identified 3 HIGH severity findings requiring immediate remediation. 
+Key interconnected issues between policy exception management and cache layer consistency pose operational risk.
+
+| Finding ID | Severity | Component | Root Cause | Impact | Target Date |
+| --- | --- | --- | --- | --- | --- |
+| F-001 | MEDIUM | CI/CD Pipeline | Component 1 misconfiguration or policy g... | Affects ~175 requests/sec with 10min RTO... | 2026-12-16 |
+| F-002 | LOW | RBAC Cache | Component 2 misconfiguration or policy g... | Affects ~243 requests/sec with 7min RTO... | 2026-09-01 |
+| F-003 | MEDIUM | Service Account Provisioning | Component 3 misconfiguration or policy g... | Affects ~80 requests/sec with 20min RTO... | 2026-07-05 |
+| F-004 | HIGH | Database Access | Component 4 misconfiguration or policy g... | Affects ~285 requests/sec with 8min RTO... | 2026-12-02 |
+| F-005 | HIGH | Service Account Provisioning | Component 0 misconfiguration or policy g... | Affects ~71 requests/sec with 10min RTO... | 2026-08-24 |
+| F-006 | LOW | CI/CD Pipeline | Component 1 misconfiguration or policy g... | Affects ~214 requests/sec with 13min RTO... | 2026-06-27 |
+| F-007 | MEDIUM | RBAC Cache | Component 2 misconfiguration or policy g... | Affects ~189 requests/sec with 6min RTO... | 2026-10-27 |
+| F-008 | HIGH | Service Account Provisioning | Component 3 misconfiguration or policy g... | Affects ~130 requests/sec with 21min RTO... | 2026-07-21 |
+| F-009 | LOW | Service Account Provisioning | Component 4 misconfiguration or policy g... | Affects ~64 requests/sec with 20min RTO... | 2026-07-26 |
+| F-010 | MEDIUM | Policy Exception | Component 0 misconfiguration or policy g... | Affects ~109 requests/sec with 27min RTO... | 2026-06-18 |
+| F-011 | LOW | Service Account Provisioning | Component 1 misconfiguration or policy g... | Affects ~189 requests/sec with 21min RTO... | 2026-09-20 |
+
+
+
+ROOT CAUSE ANALYSIS (F-001 & F-002 Interconnection):
+Finding F-001 (Policy Exception management) and F-002 (RBAC Cache staleness) are interconnected:
+- Policy exceptions created manually without triggering cache invalidation events
+- Result: Cached role_mappings become stale, leading to 403 authorization errors (see LOG-922)
+- Database schema inadequacy: role_mappings table lacks event_subscription fields (see DBS-526)
+- Impact: ~300+ req/sec affected with 15min RTO during peak hours
+
+PREVENTIVE CONTROLS:
+1. Implement Event Integration Layer: SQS topic for policy exceptions with encryption
+2. Add authentication/authorization layer for event producers
+3. Implement cache invalidation subscribers in policy-cache-layer
+4. Add monitoring dashboard tracking exception-to-invalidation latency
+
+
+
+PHASED REMEDIATION PLAN:
+
+Phase 1: Event Integration Layer (4 weeks target)
+- Design: Create SQS topic (policy-event-stream) with encryption
+- Implementation: Add authentication for event producers
+- Testing: Unit tests for event payload validation
+- Completion: 2026-Q3 Week 2
+
+Phase 2: System Integration (4 weeks target)
+- Connect incident management system to policy-event-stream
+- Add cache layer subscribers for automatic invalidation
+- Implement SLA targets: exception-to-invalidation within 30 seconds
+- Completion: 2026-Q3 Week 4
+
+Phase 3: Testing & Rollout (4 weeks target)
+- Canary deployment to 10% traffic
+- Load testing: simulate 500 req/sec with continuous exception flow
+- Validate cache hit rate maintains >0.85 threshold
+- SLA targets: P99 latency <200ms, cache consistency 99.99%
+- Completion: 2026-Q3 Week 8
+
+
+COMPLIANCE MAPPING:
+
+| Compliance Framework | Applicable | Evidence Required | Status |
+| --- | --- | --- | --- |
+| SOC 2 Type II | Yes | Change management audit trail | Tracking |
+| ISO 27001:2022 | Yes | Access control attestation | In Progress |
+| FCA Senior Management Regime | Yes | Risk governance documentation | Scheduled |
+
+
+METRICS & MONITORING:
+- Exception-to-cache-invalidation latency: Target <30 seconds (P95)
+- Cache hit rate threshold: >0.85 (alert if <0.80)
+- Authorization error rate: <0.1% of total requests
+- Dashboard: Grafana dashboard tracking all metrics in real-time
+
+CROSS-REFERENCES:
+- Related incident: LOG-554 (403 authorization error example)
+- Database design: DBS-248 (role_mappings and policy_exceptions schema)
+
+Management Response:
+Control owners accepted findings and committed to phased remediation milestones through Q3 2026.
+---
+Document ID: AUD-321
+Type: Audit Report
+Title: Quarterly Internal Controls Review
+Audit Period: 2026-Q2
+Audit Date: 2026-08-15
+
+EXECUTIVE SUMMARY:
+Audit identified 6 HIGH severity findings requiring immediate remediation. 
+Key interconnected issues between policy exception management and cache layer consistency pose operational risk.
+
+| Finding ID | Severity | Component | Root Cause | Impact | Target Date |
+| --- | --- | --- | --- | --- | --- |
+| F-001 | HIGH | Policy Exception | Component 1 misconfiguration or policy g... | Affects ~275 requests/sec with 20min RTO... | 2026-10-25 |
+| F-002 | HIGH | CI/CD Pipeline | Component 2 misconfiguration or policy g... | Affects ~51 requests/sec with 17min RTO... | 2026-09-17 |
+| F-003 | MEDIUM | Policy Exception | Component 3 misconfiguration or policy g... | Affects ~212 requests/sec with 13min RTO... | 2026-12-17 |
+| F-004 | HIGH | Policy Exception | Component 4 misconfiguration or policy g... | Affects ~76 requests/sec with 14min RTO... | 2026-09-14 |
+| F-005 | HIGH | RBAC Cache | Component 0 misconfiguration or policy g... | Affects ~282 requests/sec with 9min RTO... | 2026-06-04 |
+| F-006 | LOW | Service Account Provisioning | Component 1 misconfiguration or policy g... | Affects ~80 requests/sec with 16min RTO... | 2026-09-09 |
+| F-007 | MEDIUM | CI/CD Pipeline | Component 2 misconfiguration or policy g... | Affects ~67 requests/sec with 22min RTO... | 2026-09-19 |
+| F-008 | HIGH | Database Access | Component 3 misconfiguration or policy g... | Affects ~53 requests/sec with 12min RTO... | 2026-06-02 |
+| F-009 | LOW | Policy Exception | Component 4 misconfiguration or policy g... | Affects ~81 requests/sec with 30min RTO... | 2026-07-05 |
+| F-010 | LOW | CI/CD Pipeline | Component 0 misconfiguration or policy g... | Affects ~147 requests/sec with 26min RTO... | 2026-09-23 |
+| F-011 | HIGH | Database Access | Component 1 misconfiguration or policy g... | Affects ~170 requests/sec with 24min RTO... | 2026-11-01 |
+
+
+
+ROOT CAUSE ANALYSIS (F-001 & F-002 Interconnection):
+Finding F-001 (Policy Exception management) and F-002 (RBAC Cache staleness) are interconnected:
+- Policy exceptions created manually without triggering cache invalidation events
+- Result: Cached role_mappings become stale, leading to 403 authorization errors (see LOG-234)
+- Database schema inadequacy: role_mappings table lacks event_subscription fields (see DBS-342)
+- Impact: ~300+ req/sec affected with 15min RTO during peak hours
+
+PREVENTIVE CONTROLS:
+1. Implement Event Integration Layer: SQS topic for policy exceptions with encryption
+2. Add authentication/authorization layer for event producers
+3. Implement cache invalidation subscribers in policy-cache-layer
+4. Add monitoring dashboard tracking exception-to-invalidation latency
+
+
+
+PHASED REMEDIATION PLAN:
+
+Phase 1: Event Integration Layer (4 weeks target)
+- Design: Create SQS topic (policy-event-stream) with encryption
+- Implementation: Add authentication for event producers
+- Testing: Unit tests for event payload validation
+- Completion: 2026-Q3 Week 2
+
+Phase 2: System Integration (4 weeks target)
+- Connect incident management system to policy-event-stream
+- Add cache layer subscribers for automatic invalidation
+- Implement SLA targets: exception-to-invalidation within 30 seconds
+- Completion: 2026-Q3 Week 4
+
+Phase 3: Testing & Rollout (4 weeks target)
+- Canary deployment to 10% traffic
+- Load testing: simulate 500 req/sec with continuous exception flow
+- Validate cache hit rate maintains >0.85 threshold
+- SLA targets: P99 latency <200ms, cache consistency 99.99%
+- Completion: 2026-Q3 Week 8
+
+
+COMPLIANCE MAPPING:
+
+| Compliance Framework | Applicable | Evidence Required | Status |
+| --- | --- | --- | --- |
+| SOC 2 Type II | Yes | Change management audit trail | Tracking |
+| ISO 27001:2022 | Yes | Access control attestation | In Progress |
+| FCA Senior Management Regime | Yes | Risk governance documentation | Scheduled |
+
+
+METRICS & MONITORING:
+- Exception-to-cache-invalidation latency: Target <30 seconds (P95)
+- Cache hit rate threshold: >0.85 (alert if <0.80)
+- Authorization error rate: <0.1% of total requests
+- Dashboard: Grafana dashboard tracking all metrics in real-time
+
+CROSS-REFERENCES:
+- Related incident: LOG-445 (403 authorization error example)
+- Database design: DBS-786 (role_mappings and policy_exceptions schema)
+
+Management Response:
+Control owners accepted findings and committed to phased remediation milestones through Q3 2026.
+---
+Document ID: AUD-898
+Type: Audit Report
+Title: Access Governance Audit Findings
+Audit Period: 2026-Q3
+Audit Date: 2026-09-10
+
+EXECUTIVE SUMMARY:
+Audit identified 2 HIGH severity findings requiring immediate remediation. 
+Key interconnected issues between policy exception management and cache layer consistency pose operational risk.
+
+| Finding ID | Severity | Component | Root Cause | Impact | Target Date |
+| --- | --- | --- | --- | --- | --- |
+| F-001 | MEDIUM | RBAC Cache | Component 1 misconfiguration or policy g... | Affects ~254 requests/sec with 27min RTO... | 2026-06-26 |
+| F-002 | MEDIUM | RBAC Cache | Component 2 misconfiguration or policy g... | Affects ~117 requests/sec with 29min RTO... | 2026-08-01 |
+| F-003 | MEDIUM | Service Account Provisioning | Component 3 misconfiguration or policy g... | Affects ~128 requests/sec with 9min RTO... | 2026-09-11 |
+| F-004 | LOW | Service Account Provisioning | Component 4 misconfiguration or policy g... | Affects ~110 requests/sec with 10min RTO... | 2026-12-12 |
+| F-005 | LOW | CI/CD Pipeline | Component 0 misconfiguration or policy g... | Affects ~228 requests/sec with 22min RTO... | 2026-08-19 |
+| F-006 | LOW | Service Account Provisioning | Component 1 misconfiguration or policy g... | Affects ~183 requests/sec with 27min RTO... | 2026-07-07 |
+| F-007 | MEDIUM | CI/CD Pipeline | Component 2 misconfiguration or policy g... | Affects ~164 requests/sec with 11min RTO... | 2026-07-10 |
+| F-008 | MEDIUM | Service Account Provisioning | Component 3 misconfiguration or policy g... | Affects ~240 requests/sec with 30min RTO... | 2026-07-22 |
+| F-009 | HIGH | CI/CD Pipeline | Component 4 misconfiguration or policy g... | Affects ~56 requests/sec with 22min RTO... | 2026-07-20 |
+| F-010 | MEDIUM | CI/CD Pipeline | Component 0 misconfiguration or policy g... | Affects ~236 requests/sec with 20min RTO... | 2026-06-09 |
+| F-011 | HIGH | Database Access | Component 1 misconfiguration or policy g... | Affects ~258 requests/sec with 28min RTO... | 2026-09-24 |
+
+
+
+ROOT CAUSE ANALYSIS (F-001 & F-002 Interconnection):
+Finding F-001 (Policy Exception management) and F-002 (RBAC Cache staleness) are interconnected:
+- Policy exceptions created manually without triggering cache invalidation events
+- Result: Cached role_mappings become stale, leading to 403 authorization errors (see LOG-686)
+- Database schema inadequacy: role_mappings table lacks event_subscription fields (see DBS-240)
+- Impact: ~300+ req/sec affected with 15min RTO during peak hours
+
+PREVENTIVE CONTROLS:
+1. Implement Event Integration Layer: SQS topic for policy exceptions with encryption
+2. Add authentication/authorization layer for event producers
+3. Implement cache invalidation subscribers in policy-cache-layer
+4. Add monitoring dashboard tracking exception-to-invalidation latency
+
+
+
+PHASED REMEDIATION PLAN:
+
+Phase 1: Event Integration Layer (4 weeks target)
+- Design: Create SQS topic (policy-event-stream) with encryption
+- Implementation: Add authentication for event producers
+- Testing: Unit tests for event payload validation
+- Completion: 2026-Q3 Week 2
+
+Phase 2: System Integration (4 weeks target)
+- Connect incident management system to policy-event-stream
+- Add cache layer subscribers for automatic invalidation
+- Implement SLA targets: exception-to-invalidation within 30 seconds
+- Completion: 2026-Q3 Week 4
+
+Phase 3: Testing & Rollout (4 weeks target)
+- Canary deployment to 10% traffic
+- Load testing: simulate 500 req/sec with continuous exception flow
+- Validate cache hit rate maintains >0.85 threshold
+- SLA targets: P99 latency <200ms, cache consistency 99.99%
+- Completion: 2026-Q3 Week 8
+
+
+COMPLIANCE MAPPING:
+
+| Compliance Framework | Applicable | Evidence Required | Status |
+| --- | --- | --- | --- |
+| SOC 2 Type II | Yes | Change management audit trail | Tracking |
+| ISO 27001:2022 | Yes | Access control attestation | In Progress |
+| FCA Senior Management Regime | Yes | Risk governance documentation | Scheduled |
+
+
+METRICS & MONITORING:
+- Exception-to-cache-invalidation latency: Target <30 seconds (P95)
+- Cache hit rate threshold: >0.85 (alert if <0.80)
+- Authorization error rate: <0.1% of total requests
+- Dashboard: Grafana dashboard tracking all metrics in real-time
+
+CROSS-REFERENCES:
+- Related incident: LOG-312 (403 authorization error example)
+- Database design: DBS-808 (role_mappings and policy_exceptions schema)
+
+Management Response:
+Control owners accepted findings and committed to phased remediation milestones through Q3 2026.
+---
+Document ID: REG-208
 Type: Regulatory Framework
-Framework: PCI-DSS
-Summary: Cardholder data protection and secure processing standards.
+Framework: IFRS 17
+Issuing Authority: IASB
+Year Adopted: 2023
+Effective Date: 2026-01-01
 
-Mandatory Controls:
-1. Data lineage must be traceable from source systems to reporting outputs.
-2. Exceptions require documented risk acceptance and expiry date.
-3. Quarterly control attestations are required from process owners.
-4. Breaches must be reported to compliance governance within 24 hours.
+FRAMEWORK SUMMARY:
+Insurance contract recognition, measurement, and disclosure.
 
-Evidence Required:
-- Control execution logs
-- Policy acknowledgements
-- Audit trail snapshots
-- Corrective action plans
+Applicability: Mandatory for all financial services operations processing customer data 
+or managing risk exposure in EMEA regions.
+
+MANDATORY CONTROLS:
+
+1. Data Lineage & Auditability
+   - All data transformations must be traceable from source systems to reporting outputs
+   - Requirement: Complete audit trail with timestamps and actor identification
+   - RAG Cross-Reference: DBS-992 (audit_events table design)
+   - Implementation: audit_events table with immutable JSONB change tracking
+   - Monitoring: Automated daily verification of lineage integrity
+
+2. Exception Management Framework
+   - Policy exceptions require:
+     • Documented risk acceptance by authorized stakeholder
+     • Clear expiry date (max 90 days without renewal)
+     • Auto-closure event triggering cache invalidation
+   - RAG Cross-Reference: AUD-915 (F-001 policy exception findings)
+   - Database: policy_exceptions table with state machine management
+   - SQS Integration: Publish to policy-event-stream on APPROVED status
+
+3. Control Attestation Program
+   - Quarterly certification by process owners required
+   - Controls: authentication, authorization, audit trails, encryption
+   - Escalation: Any attestation gaps flagged to governance committee
+   - Testing: Automated and manual control execution testing
+
+4. Breach Notification Protocol
+   - Security incidents must be reported to compliance governance within 24 hours
+   - Criteria: Unauthorized access, data exposure, service disruption
+   - Reporting: Incident ticket with trace_id linking to operational logs
+   - RAG Cross-Reference: LOG-903 (trace_id correlation)
+
+COMPLIANCE STATUS MATRIX:
+
+| Control Area | Requirement | Compliance Status | Evidence | Review Date |
+| --- | --- | --- | --- | --- |
+| Data Lineage | Traceable from source to reporting | Compliant | Audit trail logs | 2026-Q3 |
+| Exception Management | Documented risk acceptance + expiry | In Progress | Policy exception log | 2026-Q2 |
+| Attestations | Quarterly control owner sign-off | Compliant | Signed attestations | Monthly |
+| Breach Notification | Report to governance within 24h | Compliant | Incident tickets | As-needed |
+
+
+EVIDENCE REQUIREMENTS:
+
+Documentation Package:
+- Control execution logs (generated by automated systems)
+- Policy acknowledgements (digital signatures from stakeholders)
+- Audit trail snapshots (quarterly extracts from audit_events table)
+- Corrective action plans (linked to audit findings via AUD-* documents)
+
+Archival & Retention:
+- Evidence retained for 7 years
+- Immutable storage in compliance data lake
+- Regular integrity verification via checksums
+
+ENFORCEMENT & PENALTIES:
+
+Non-Compliance Consequences:
+- First violation: Written warning + 30-day remediation deadline
+- Repeated violations: Regulatory sanctions (financial) + operational restrictions
+- Severe breaches: Escalation to financial regulator + public disclosure
+
+CROSS-FRAMEWORK MAPPING:
+
+This framework aligns with:
+- ISO 27001:2022 (Information Security Management)
+- SOC 2 Type II (Service Organization Controls)
+- GDPR Article 5 (Data integrity and confidentiality)
+- FCA Senior Management Regime (UK Handbook Requirement)
+
+Compliance Officer: Alice Johnson
+Last Review: 2026-08-01
+Next Review: 2026-09-18
+---
+Document ID: AUD-676
+Type: Audit Report
+Title: Access Governance Audit Findings
+Audit Period: 2026-Q4
+Audit Date: 2026-07-20
+
+EXECUTIVE SUMMARY:
+Audit identified 7 HIGH severity findings requiring immediate remediation. 
+Key interconnected issues between policy exception management and cache layer consistency pose operational risk.
+
+| Finding ID | Severity | Component | Root Cause | Impact | Target Date |
+| --- | --- | --- | --- | --- | --- |
+| F-001 | MEDIUM | RBAC Cache | Component 1 misconfiguration or policy g... | Affects ~56 requests/sec with 29min RTO... | 2026-11-18 |
+| F-002 | MEDIUM | RBAC Cache | Component 2 misconfiguration or policy g... | Affects ~82 requests/sec with 17min RTO... | 2026-10-27 |
+| F-003 | LOW | Database Access | Component 3 misconfiguration or policy g... | Affects ~194 requests/sec with 5min RTO... | 2026-08-25 |
+| F-004 | HIGH | CI/CD Pipeline | Component 4 misconfiguration or policy g... | Affects ~184 requests/sec with 12min RTO... | 2026-10-25 |
+| F-005 | HIGH | Policy Exception | Component 0 misconfiguration or policy g... | Affects ~64 requests/sec with 29min RTO... | 2026-09-02 |
+| F-006 | HIGH | Database Access | Component 1 misconfiguration or policy g... | Affects ~152 requests/sec with 17min RTO... | 2026-07-12 |
+| F-007 | HIGH | CI/CD Pipeline | Component 2 misconfiguration or policy g... | Affects ~50 requests/sec with 22min RTO... | 2026-10-26 |
+| F-008 | HIGH | RBAC Cache | Component 3 misconfiguration or policy g... | Affects ~283 requests/sec with 18min RTO... | 2026-07-13 |
+| F-009 | LOW | Service Account Provisioning | Component 4 misconfiguration or policy g... | Affects ~122 requests/sec with 9min RTO... | 2026-10-22 |
+| F-010 | HIGH | RBAC Cache | Component 0 misconfiguration or policy g... | Affects ~241 requests/sec with 23min RTO... | 2026-11-26 |
+| F-011 | HIGH | Database Access | Component 1 misconfiguration or policy g... | Affects ~118 requests/sec with 12min RTO... | 2026-10-03 |
+
+
+
+ROOT CAUSE ANALYSIS (F-001 & F-002 Interconnection):
+Finding F-001 (Policy Exception management) and F-002 (RBAC Cache staleness) are interconnected:
+- Policy exceptions created manually without triggering cache invalidation events
+- Result: Cached role_mappings become stale, leading to 403 authorization errors (see LOG-784)
+- Database schema inadequacy: role_mappings table lacks event_subscription fields (see DBS-968)
+- Impact: ~300+ req/sec affected with 15min RTO during peak hours
+
+PREVENTIVE CONTROLS:
+1. Implement Event Integration Layer: SQS topic for policy exceptions with encryption
+2. Add authentication/authorization layer for event producers
+3. Implement cache invalidation subscribers in policy-cache-layer
+4. Add monitoring dashboard tracking exception-to-invalidation latency
+
+
+
+PHASED REMEDIATION PLAN:
+
+Phase 1: Event Integration Layer (4 weeks target)
+- Design: Create SQS topic (policy-event-stream) with encryption
+- Implementation: Add authentication for event producers
+- Testing: Unit tests for event payload validation
+- Completion: 2026-Q3 Week 2
+
+Phase 2: System Integration (4 weeks target)
+- Connect incident management system to policy-event-stream
+- Add cache layer subscribers for automatic invalidation
+- Implement SLA targets: exception-to-invalidation within 30 seconds
+- Completion: 2026-Q3 Week 4
+
+Phase 3: Testing & Rollout (4 weeks target)
+- Canary deployment to 10% traffic
+- Load testing: simulate 500 req/sec with continuous exception flow
+- Validate cache hit rate maintains >0.85 threshold
+- SLA targets: P99 latency <200ms, cache consistency 99.99%
+- Completion: 2026-Q3 Week 8
+
+
+COMPLIANCE MAPPING:
+
+| Compliance Framework | Applicable | Evidence Required | Status |
+| --- | --- | --- | --- |
+| SOC 2 Type II | Yes | Change management audit trail | Tracking |
+| ISO 27001:2022 | Yes | Access control attestation | In Progress |
+| FCA Senior Management Regime | Yes | Risk governance documentation | Scheduled |
+
+
+METRICS & MONITORING:
+- Exception-to-cache-invalidation latency: Target <30 seconds (P95)
+- Cache hit rate threshold: >0.85 (alert if <0.80)
+- Authorization error rate: <0.1% of total requests
+- Dashboard: Grafana dashboard tracking all metrics in real-time
+
+CROSS-REFERENCES:
+- Related incident: LOG-479 (403 authorization error example)
+- Database design: DBS-737 (role_mappings and policy_exceptions schema)
+
+Management Response:
+Control owners accepted findings and committed to phased remediation milestones through Q3 2026.
+---
+Document ID: KYC-441
+Type: KYC / AML Guideline
+Version: 3.1
+
+Workflow:
+1. Capture customer identity document, proof of address, and tax identifier.
+2. Validate name, date of birth, and address across trusted data providers.
+3. Screen against sanctions, PEP, and adverse media watchlists.
+4. Assign risk tier (medium) and choose due diligence depth.
+5. Escalate suspicious indicators to AML case management within 2 hours.
+6. Store evidence package for 7 years with immutable audit history.
+
+Suspicious Activity Triggers:
+- Repeated transfers just below reporting threshold.
+- Mismatch between declared occupation and transaction behavior.
+- Third-party cash deposit patterns across unrelated accounts.

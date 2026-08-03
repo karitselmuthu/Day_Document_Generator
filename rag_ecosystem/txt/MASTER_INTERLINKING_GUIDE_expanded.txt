@@ -1,0 +1,84 @@
+# MASTER_INTERLINKING_GUIDE: RAG Ecosystem Navigation
+
+**Version:** 1.0.0
+**Generated:** 2026-08-03T21:23:50.229735
+
+## Document Overview
+
+The RAG Ecosystem consists of 4 core documents + 1 master guide:
+
+### FEE-407: Fee Structure & Billing Policy
+- **Type:** POLICY
+- **Sections:** 10 main + 3 appendices
+- **Cross-references:** 45
+
+### SOP-843: Standard Operating Procedures - Billing Operations
+- **Type:** PROCEDURE
+- **Sections:** 13 main + 4 appendices
+- **Cross-references:** 60
+
+### CIR-574: Customer Communication Protocols & Templates
+- **Type:** COMMUNICATION
+- **Sections:** 12 main + 4 appendices
+- **Cross-references:** 50
+
+### REG-768: Regulatory Compliance Framework
+- **Type:** COMPLIANCE
+- **Sections:** 9 main + 4 appendices
+- **Cross-references:** 80
+
+
+## Document Relationships
+
+```
+REG-768 (Compliance Layer)
+   ├── FEE-407 (Policy)
+   ├── SOP-843 (Procedure)
+   └── CIR-574 (Communication)
+```
+
+## Use Case Navigation
+
+### I need to bill a customer
+- FEE-407 (Sections 2, Appendix A)
+- SOP-843 (Sections 4.1-4.3)
+- REG-768 (Sections 2.2)
+
+### I need to notify customers about a rate change
+- FEE-407 (Section 6.2)
+- CIR-574 (Section 3)
+- SOP-843 (Section 11.1)
+- REG-768 (Section 2.1.4)
+
+### I need to manage a delinquent account
+- SOP-843 (Section 6.1)
+- FEE-407 (Section 3.1)
+- CIR-574 (Section 6.1)
+- REG-768 (Section 2.4.3)
+
+### I need to resolve a billing dispute
+- SOP-843 (Section 9)
+- FEE-407 (Section 4.3)
+- CIR-574 (Section 6.2)
+- REG-768 (Section 2.5)
+
+### I need to verify compliance
+- REG-768 (Sections 2-4)
+- FEE-407 (Section 7)
+- SOP-843 (Section 10)
+- CIR-574 (Section 9)
+
+
+## Total Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total Documents | 5 |
+| Total Sections | 50+ |
+| Total Cross-References | 235+ |
+| Document Types | 5 (Policy, Procedure, Communication, Compliance, Navigation) |
+| Formats Supported | 2 (TXT, PDF) |
+
+
+---
+Generated: 2026-08-03T21:23:50.229735

@@ -127,6 +127,18 @@ aws s3 ls s3://your-bucket --recursive
 
 ### Advanced Features
 
+✅ **Mixed Format Support** (NEW)
+- Generate documents in **TXT, PDF, or both formats**
+- TXT optimized for RAG systems and semantic chunking
+- PDF optimized for distribution and compliance
+- Format-aware S3 storage with separate paths
+
+✅ **RAG Ecosystem Documents** (NEW)
+- 5 interconnected operational documents (FEE-407, SOP-843, CIR-574, REG-768, MASTER_GUIDE)
+- 235+ cross-references between documents
+- Section-level chunking for RAG ingestion
+- Dual format generation (TXT and PDF)
+
 ✅ **Batch Processing**
 - Efficient multi-document uploads
 - Manifest generation per day
@@ -435,78 +447,151 @@ s3_storage.upload_document(
 
 ## 💻 Usage
 
-### Basic Usage
+### Command 1: Standard Daily Churn (Traditional)
 
 ```bash
 # Generate 5 days of documents (local storage only)
-python3 app.py --days 5
+python3 app.py churn --days 5
 
 # Generate and upload to S3
-python3 app.py --days 5 --s3-bucket my-bucket --aws-region us-east-1
+python3 app.py churn --days 5 --s3-bucket my-bucket --aws-region us-east-1
 
 # Generate 10 days with specific bucket
-python3 app.py --days 10 --s3-bucket documents-churn --aws-region eu-west-1
+python3 app.py churn --days 10 --s3-bucket documents-churn --aws-region eu-west-1
 
 # View help
-python3 app.py --help
+python3 app.py churn --help
+```
+
+### Command 2: RAG Ecosystem Documents (NEW)
+
+Generate 5 interconnected RAG documents with dual format support:
+
+```bash
+# Generate both TXT and PDF formats
+python3 app.py rag-ecosystem --output-dir rag_ecosystem --formats txt pdf
+
+# Generate TXT only
+python3 app.py rag-ecosystem --formats txt
+
+# Generate PDF only
+python3 app.py rag-ecosystem --formats pdf
+
+# With S3 upload
+python3 app.py rag-ecosystem \
+  --output-dir rag_ecosystem \
+  --formats txt pdf \
+  --s3-bucket my-bucket \
+  --aws-region us-east-1
+
+# View help
+python3 app.py rag-ecosystem --help
+```
+
+### Legacy Usage (Backward Compatible)
+
+```bash
+# Without subcommand (defaults to churn mode)
+python3 app.py --days 5
+
+# Full options
+python3 app.py --days 5 --min-new-docs 3 --max-new-docs 8
 ```
 
 ### Output Examples
 
-**Day 1 Generation:**
+**Churn Mode:**
 ```
 S3 storage enabled: amzn-rag-doc-generator (us-east-1)
 Day 1: 7 docs generated with churn.
-```
-
-**Multi-day Generation:**
-```
-Day 1: 7 docs generated with churn.
 Day 2: 14 docs generated with churn.
 Day 3: 20 docs generated with churn.
-Day 4: 24 docs generated with churn.
-Day 5: 32 docs generated with churn.
+```
+
+**RAG Ecosystem Mode:**
+```
+======================================================================
+RAG ECOSYSTEM DOCUMENT GENERATION
+======================================================================
+Generating documents in formats: TXT, PDF
+
+FEE-407:
+  ✓ TXT: rag_ecosystem/txt/FEE-407_expanded.txt (4.1 KB)
+  ✓ PDF: rag_ecosystem/pdf/FEE-407_expanded.pdf (7.5 KB)
+
+SOP-843:
+  ✓ TXT: rag_ecosystem/txt/SOP-843_expanded.txt (4.9 KB)
+  ✓ PDF: rag_ecosystem/pdf/SOP-843_expanded.pdf (7.7 KB)
+
+[... additional documents ...]
+
+Total documents: 5
+Total formats: 2
+Total cross-references: 235+
+======================================================================
 ```
 
 ### Programmatic Usage
 
 ```python
+# Standard churn
 from churn import generate_churn_over_days
 from s3_storage import S3DocumentStorage
 
-# Create S3 storage
 s3_storage = S3DocumentStorage(
     bucket_name='my-bucket',
     region='us-east-1'
 )
 
-# Generate documents
 generate_churn_over_days(
-    num_days=5,
-    output_dir='corpus',
+    days=5,
+    base_dir='corpus',
+    s3_storage=s3_storage
+)
+```
+
+```python
+# RAG ecosystem (NEW)
+from churn import generate_rag_ecosystem
+from s3_storage import S3DocumentStorage
+
+s3_storage = S3DocumentStorage(
+    bucket_name='my-bucket',
+    region='us-east-1'
+)
+
+results = generate_rag_ecosystem(
+    output_dir='rag_ecosystem',
+    formats=['txt', 'pdf'],
     s3_storage=s3_storage
 )
 
-# Verify in S3
-response = s3_storage.s3_client.list_objects_v2(
-    Bucket='my-bucket',
-    Prefix='docs/'
-)
-print(f"Objects in S3: {len(response.get('Contents', []))}")
+# Results structure:
+# {
+#   'FEE-407': {'txt': 'path/to/FEE-407.txt', 'pdf': 'path/to/FEE-407.pdf'},
+#   'SOP-843': {'txt': '...', 'pdf': '...'},
+#   ...
+# }
 ```
 
 ### Verify Generated Documents
 
 ```bash
-# Local files
+# Churn mode - local files
 ls -la corpus/day1/
 wc -l corpus/day1/*.txt
 
+# RAG Ecosystem - local files
+ls -la rag_ecosystem/txt/
+ls -la rag_ecosystem/pdf/
+
 # S3 objects
 aws s3 ls s3://my-bucket/docs/day1/ --recursive
+aws s3 ls s3://my-bucket/rag-ecosystem/ --recursive
 
 # S3 versions
 aws s3api list-object-versions --bucket my-bucket --prefix docs/day1/
+aws s3api list-object-versions --bucket my-bucket --prefix rag-ecosystem/
 ```
 
 ---

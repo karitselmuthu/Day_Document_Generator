@@ -49,17 +49,21 @@ class S3DocumentStorage:
     def upload_document(
         self,
         doc_id: str,
-        content: str,
-        day: int,
+        content: str | bytes,
+        day: int = None,
         metadata: Optional[dict] = None,
+        doc_type: str = "standard",
+        format_type: str = "txt",
     ) -> dict:
         """Upload a document to S3 with versioning metadata.
 
         Args:
             doc_id: Document identifier
-            content: Document content
-            day: Day snapshot number
+            content: Document content (str for TXT, bytes for PDF)
+            day: Day snapshot number (optional, for standard churn)
             metadata: Additional metadata to store
+            doc_type: Document type ("standard" or "rag-ecosystem")
+            format_type: File format ("txt" or "pdf")
 
         Returns:
             Upload result with version info
@@ -67,28 +71,49 @@ class S3DocumentStorage:
         if metadata is None:
             metadata = {}
 
-        # Build S3 key path: docs/{day}/{doc_id}
-        s3_key = f"docs/day{day}/{doc_id}.txt"
+        # Determine MIME type based on format
+        content_type = "application/pdf" if format_type == "pdf" else "text/plain"
+        file_ext = "pdf" if format_type == "pdf" else "txt"
+
+        # Build S3 key path based on document type
+        if doc_type == "rag-ecosystem":
+            # RAG ecosystem path: rag-ecosystem/{format}/{doc_id}.{ext}
+            s3_key = f"rag-ecosystem/{format_type}/{doc_id}.{file_ext}"
+        else:
+            # Standard churn path: docs/day{day}/{doc_id}.{ext}
+            s3_key = f"docs/day{day}/{doc_id}.{file_ext}"
 
         # Prepare versioning metadata
         version_metadata = {
             "doc_id": doc_id,
-            "day": day,
+            "doc_type": doc_type,
+            "format": format_type,
             "uploaded_at": datetime.utcnow().isoformat(),
-            "content_length": len(content),
             **metadata,
         }
 
+        if day is not None:
+            version_metadata["day"] = day
+
+        # Add content length (handle both str and bytes)
+        if isinstance(content, bytes):
+            version_metadata["content_length"] = len(content)
+            body_content = content
+        else:
+            version_metadata["content_length"] = len(content)
+            body_content = content.encode("utf-8")
+
         try:
-            # Upload object without tags first (tagging may require additional permissions)
+            # Upload object
             response = self.s3_client.put_object(
                 Bucket=self.bucket_name,
                 Key=s3_key,
-                Body=content.encode("utf-8"),
-                ContentType="text/plain",
+                Body=body_content,
+                ContentType=content_type,
                 Metadata={
                     "doc-id": doc_id,
-                    "day": str(day),
+                    "doc-type": doc_type,
+                    "format": format_type,
                     "uploaded-at": version_metadata["uploaded_at"],
                 },
             )
@@ -103,7 +128,8 @@ class S3DocumentStorage:
                     Tagging={
                         "TagSet": [
                             {"Key": "doc_id", "Value": doc_id},
-                            {"Key": "day", "Value": str(day)},
+                            {"Key": "doc_type", "Value": doc_type},
+                            {"Key": "format", "Value": format_type},
                             {"Key": "versioned", "Value": "true"},
                         ]
                     },
@@ -121,15 +147,16 @@ class S3DocumentStorage:
                 "metadata": version_metadata,
                 "etag": response.get("ETag"),
             }
-            logger.info(f"Uploaded {doc_id} to s3://{self.bucket_name}/{s3_key} (v{version_id})")
+            logger.info(f"Uploaded {doc_id} ({format_type.upper()}) to s3://{self.bucket_name}/{s3_key} (v{version_id})")
             return result
 
         except ClientError as e:
-            logger.error(f"Failed to upload {doc_id}: {e}")
+            logger.error(f"Failed to upload {doc_id} ({format_type.upper()}): {e}")
             return {
                 "success": False,
                 "error": str(e),
                 "doc_id": doc_id,
+                "format": format_type,
             }
 
     def get_document_versions(self, doc_id: str) -> list[dict]:
