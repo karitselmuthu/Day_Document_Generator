@@ -1,0 +1,24 @@
+Document ID: API-682
+Type: API Specification
+Format: OpenAPI 3.0 (excerpt)
+
+openapi: 3.0.3
+info:
+  title: Financial Services Internal API
+  version: "1.9"
+paths:
+  /payments/transfer:
+    post:
+      summary: Create payment transfer
+      operationId: op_6133
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Validation error
+        "403":
+          description: Authorization failure
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2

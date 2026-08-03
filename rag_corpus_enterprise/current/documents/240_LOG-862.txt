@@ -1,0 +1,29 @@
+{
+  "document_id": "LOG-862",
+  "type": "log",
+  "timestamp": "2026-07-25T18:52:24.831936",
+  "severity": "WARN",
+  "application": "PolicyManagement",
+  "component": "document-parser",
+  "trace_id": "0ef87847f6064fc718be2a76a710b7ce",
+  "span_id": "60c965eb1815c162",
+  "cloud": {
+    "platform": "Azure VM",
+    "resource": {
+      "account_id": "azure-prod-8492",
+      "region": "eastus2",
+      "cluster_name": "aks-insurance-prod"
+    }
+  },
+  "k8s": {
+    "k8s.pod.name": "auth-service-5445f74666-d8j9t",
+    "k8s.namespace.name": "policy-prod"
+  },
+  "payload": {
+    "duration_ms": 154,
+    "retry_count": 0,
+    "shard_id": "shard-08",
+    "message": "Synthetic operational event for workload monitoring.",
+    "recovery_action": "loaded policy bundle into in-memory cache"
+  }
+}

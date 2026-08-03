@@ -1,0 +1,14 @@
+Document ID: AUD-230
+Type: Audit Report
+Title: VM Patch Compliance
+Control Family: IAM-04
+Summary: RBAC violations detected in ClaimsProcessing.
+
+Findings:
+- Evidence was sampled from CI/CD reports, cloud logs, and ticketing records.
+- Two medium-risk items were accepted with mitigation and owner assignments.
+- No high-severity compliance gaps remained open at report publication time.
+
+Next Actions:
+Teams must submit remediation updates within five business days.
+[UPDATED on Day 6]

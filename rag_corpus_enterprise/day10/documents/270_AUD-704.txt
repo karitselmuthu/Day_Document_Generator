@@ -1,0 +1,14 @@
+Document ID: AUD-704
+Type: Audit Report
+Title: External Compliance Assurance Letter
+Audit Period: 2026-Q1
+Severity Mix: High=0, Medium=2, Low=4
+
+Findings:
+- Root Cause: Outdated privileged access recertification workflow
+- Impact: Regulatory reporting quality may degrade under peak transaction load.
+- Recommendation: Enforce preventive controls in CI/CD and IAM workflows.
+- Target Date: 2026-09-15
+
+Management Response:
+Control owners accepted findings and committed remediation milestones.

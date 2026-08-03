@@ -1,0 +1,19 @@
+Document ID: POL-646
+Type: Policy
+Title: Access Control Policy
+Owner: Security Council
+Scope: All production workloads
+
+Rules:
+- AES-256 encryption required for data at rest.
+- AES-256 encryption required for data at rest.
+- Critical vulnerabilities patched within 48 hours.
+
+Enforcement:
+1. Build pipelines block merge when critical findings remain open.
+2. Access reviews are completed monthly and audited quarterly.
+3. Exceptions require written sign-off and an expiration date.
+
+Review Cadence:
+This policy is reviewed every 90 days or after any significant security incident.
+[UPDATED on Day 2]

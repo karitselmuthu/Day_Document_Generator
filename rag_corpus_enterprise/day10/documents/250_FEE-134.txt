@@ -1,0 +1,18 @@
+Document ID: FEE-134
+Type: Fee Schedule
+Currency: USD
+Effective Date: 2026-12-01
+
+Charges:
+| Fee Type | Amount | Rule | Notes |
+| --- | ---: | --- | --- |
+| Monthly Account Maintenance | 16.00 | Waived if balance > 5000 | Retail checking |
+| Overdraft Penalty | 44.00 | Max 1 per day | Does not apply to declined transaction |
+| Domestic Wire Transfer | 22.00 | Per successful transfer | Same-day settlement |
+| International Wire Transfer | 29.00 | FX margin applies | Compliance review required |
+| Paper Statement | 4.00 | Per month | Free for senior accounts |
+
+Interest Rates:
+- Savings Tier 1: 1.25%
+- Savings Tier 2: 2.10%
+- Unsecured Overdraft APR: 19.75%

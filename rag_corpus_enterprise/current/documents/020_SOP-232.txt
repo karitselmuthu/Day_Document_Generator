@@ -1,0 +1,17 @@
+Document ID: SOP-232
+Type: Standard Operating Procedure
+Domain: loan underwriting
+Version: 2.2
+
+Procedure Steps:
+1. Validate request ticket and confirm customer consent artifacts.
+2. Verify control checkpoints in workflow system before processing.
+3. Execute transaction in core platform and capture reference ID.
+4. Perform dual-control verification for high-risk actions.
+5. Send completion notification and archive case evidence.
+
+Quality Controls:
+- Supervisor sampling: 10% of daily processed cases.
+- SLA target: 95% completion within 30 minutes.
+- Escalation threshold: any unresolved exception over 2 hours.
+[UPDATED on Day 9]

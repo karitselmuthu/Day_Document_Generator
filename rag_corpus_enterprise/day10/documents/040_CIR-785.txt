@@ -1,0 +1,16 @@
+Document ID: CIR-785
+Type: Claims Investigation Report
+Claim Reference: CLM-688424
+Policyholder Segment: corporate
+
+Case Summary:
+Adjuster reviewed supporting evidence, transaction history, and third-party records.
+Primary fraud indicator observed: duplicate invoice identifiers across unrelated providers.
+
+Evidence Review:
+1. Interview notes reconciled with claim submission metadata.
+2. Medical/repair documentation validated against provider registries.
+3. Prior claim overlap assessed using internal entity resolution.
+
+Recommendation:
+Route case to fraud desk for secondary review before payout authorization.

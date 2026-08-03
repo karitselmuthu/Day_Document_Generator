@@ -1,0 +1,29 @@
+{
+  "document_id": "LOG-746",
+  "type": "log",
+  "timestamp": "2026-08-03T19:52:00.653185",
+  "severity": "ERROR",
+  "application": "PolicyManagement",
+  "component": "auth-service",
+  "trace_id": "05030797f7bdc32b96ad7c5d820b7900",
+  "span_id": "b0d7b669acd209a7",
+  "cloud": {
+    "platform": "Azure VM",
+    "resource": {
+      "account_id": "azure-prod-8492",
+      "region": "eastus2",
+      "cluster_name": "aks-insurance-prod"
+    }
+  },
+  "k8s": {
+    "k8s.pod.name": "policy-api-775f95f9b4-s9wr2",
+    "k8s.namespace.name": "claims-prod"
+  },
+  "payload": {
+    "duration_ms": 303,
+    "retry_count": 2,
+    "shard_id": "shard-13",
+    "message": "Synthetic operational event for workload monitoring.",
+    "recovery_action": "rejected request because role mapping was missing"
+  }
+}

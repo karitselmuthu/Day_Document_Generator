@@ -1,0 +1,18 @@
+Document ID: KB-879
+Type: Knowledge Base
+Title: Renewing Auto Insurance Policy
+
+Overview:
+This article explains the end-to-end flow for policyholders and support agents. Follow
+the sequence exactly to avoid validation failures in the downstream processing queue.
+
+Steps:
+1. Login with registered credentials.
+2. Navigate to Claims -> Submit New Claim.
+3. Upload required documents.
+4. Claims processed within 7 business days.
+
+Troubleshooting:
+- For urgent claims, mark severity as high and attach hospitalization records.
+- For urgent claims, mark severity as high and attach hospitalization records.
+- For urgent claims, mark severity as high and attach hospitalization records.

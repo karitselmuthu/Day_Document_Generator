@@ -1,0 +1,19 @@
+Document ID: FEE-358
+Type: Fee Schedule
+Currency: USD
+Effective Date: 2026-12-01
+
+Charges:
+| Fee Type | Amount | Rule | Notes |
+| --- | ---: | --- | --- |
+| Monthly Account Maintenance | 9.00 | Waived if balance > 5000 | Retail checking |
+| Overdraft Penalty | 35.00 | Max 1 per day | Does not apply to declined transaction |
+| Domestic Wire Transfer | 21.00 | Per successful transfer | Same-day settlement |
+| International Wire Transfer | 54.00 | FX margin applies | Compliance review required |
+| Paper Statement | 7.00 | Per month | Free for senior accounts |
+
+Interest Rates:
+- Savings Tier 1: 1.25%
+- Savings Tier 2: 2.10%
+- Unsecured Overdraft APR: 19.75%
+[UPDATED on Day 5]

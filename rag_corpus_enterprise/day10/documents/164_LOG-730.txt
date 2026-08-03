@@ -1,0 +1,29 @@
+{
+  "document_id": "LOG-730",
+  "type": "log",
+  "timestamp": "2026-07-25T18:48:25.608380",
+  "severity": "INFO",
+  "application": "PolicyManagement",
+  "component": "claim-worker",
+  "trace_id": "ed8893922bd77717df3a5f4ce2fbece4",
+  "span_id": "053318103e28b099",
+  "cloud": {
+    "platform": "Azure VM",
+    "resource": {
+      "account_id": "azure-prod-8492",
+      "region": "eastus2",
+      "cluster_name": "aks-insurance-prod"
+    }
+  },
+  "k8s": {
+    "k8s.pod.name": "policy-api-775f95f9b4-s9wr2",
+    "k8s.namespace.name": "insurance-shared"
+  },
+  "payload": {
+    "duration_ms": 1428,
+    "retry_count": 0,
+    "shard_id": "shard-04",
+    "message": "Synthetic operational event for workload monitoring.",
+    "recovery_action": "retried transaction after timeout and completed successfully"
+  }
+}

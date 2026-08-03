@@ -1,0 +1,15 @@
+Document ID: PDS-530
+Type: Product Disclosure Statement
+Product: Auto Insurance Plus
+
+Coverage Matrix:
+| Section | Coverage Item | Limit (USD) | Excess (USD) | Exclusion |
+| --- | --- | ---: | ---: | --- |
+| A | Accidental Damage | 26064 | 287 | Wear and tear |
+| B | Third Party Liability | 123893 | 490 | Intentional acts |
+| C | Medical Reimbursement | 20949 | 282 | Non-prescribed treatment |
+
+Premium Rules:
+- Base premium adjusted by risk score, claim history, and geography.
+- Monthly payment surcharge applies when annual payment is not selected.
+- Material non-disclosure may void cover or reduce claim payout.

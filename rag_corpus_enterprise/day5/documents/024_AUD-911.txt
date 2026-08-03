@@ -1,0 +1,13 @@
+Document ID: AUD-911
+Type: Audit Report
+Title: Quarterly Compliance Report
+Control Family: IAM-04
+Summary: RBAC violations detected in ClaimsProcessing.
+
+Findings:
+- Evidence was sampled from CI/CD reports, cloud logs, and ticketing records.
+- Two medium-risk items were accepted with mitigation and owner assignments.
+- No high-severity compliance gaps remained open at report publication time.
+
+Next Actions:
+Teams must submit remediation updates within five business days.

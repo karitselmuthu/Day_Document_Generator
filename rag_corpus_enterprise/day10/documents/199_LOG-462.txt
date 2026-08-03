@@ -1,0 +1,29 @@
+{
+  "document_id": "LOG-462",
+  "type": "log",
+  "timestamp": "2026-07-25T18:52:24.831653",
+  "severity": "ERROR",
+  "application": "ClaimsProcessing",
+  "component": "claim-worker",
+  "trace_id": "e17089edc8468660e1acfef87e89700c",
+  "span_id": "5228b02488858e75",
+  "cloud": {
+    "platform": "Azure VM",
+    "resource": {
+      "account_id": "azure-prod-8492",
+      "region": "eastus2",
+      "cluster_name": "aks-insurance-prod"
+    }
+  },
+  "k8s": {
+    "k8s.pod.name": "claim-worker-6f94d6b6f5-2gv7k",
+    "k8s.namespace.name": "claims-prod"
+  },
+  "payload": {
+    "duration_ms": 103,
+    "retry_count": 3,
+    "shard_id": "shard-07",
+    "message": "Synthetic operational event for workload monitoring.",
+    "recovery_action": "loaded policy bundle into in-memory cache"
+  }
+}

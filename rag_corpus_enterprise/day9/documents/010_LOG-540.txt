@@ -1,0 +1,29 @@
+{
+  "document_id": "LOG-540",
+  "type": "log",
+  "timestamp": "2026-07-25T18:40:56.821099",
+  "severity": "INFO",
+  "application": "InsurancePortal",
+  "component": "policy-api",
+  "trace_id": "b1b673bd4755d05ad7853c1f76eb9770",
+  "span_id": "6ca828bca0385813",
+  "cloud": {
+    "platform": "AWS EKS",
+    "resource": {
+      "account_id": "aws-prod-7145",
+      "region": "ap-south-1",
+      "cluster_name": "eks-claims-prod"
+    }
+  },
+  "k8s": {
+    "k8s.pod.name": "auth-service-5445f74666-d8j9t",
+    "k8s.namespace.name": "policy-prod"
+  },
+  "payload": {
+    "duration_ms": 320,
+    "retry_count": 0,
+    "shard_id": "shard-12",
+    "message": "Synthetic operational event for workload monitoring.",
+    "recovery_action": "rejected request because role mapping was missing"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "document_id": "LOG-568",
+  "type": "log",
+  "timestamp": "2026-07-25T18:48:25.608289",
+  "severity": "WARN",
+  "application": "InsurancePortal",
+  "component": "auth-service",
+  "trace_id": "251f00cc9abe1f050e0aeff7b5214aec",
+  "span_id": "21c9cf31c3b811c4",
+  "cloud": {
+    "platform": "Azure VM",
+    "resource": {
+      "account_id": "azure-prod-8492",
+      "region": "eastus2",
+      "cluster_name": "aks-insurance-prod"
+    }
+  },
+  "k8s": {
+    "k8s.pod.name": "claim-worker-6f94d6b6f5-2gv7k",
+    "k8s.namespace.name": "policy-prod"
+  },
+  "payload": {
+    "duration_ms": 242,
+    "retry_count": 3,
+    "shard_id": "shard-13",
+    "message": "Synthetic operational event for workload monitoring.",
+    "recovery_action": "detected stale session token and triggered re-auth flow"
+  }
+}

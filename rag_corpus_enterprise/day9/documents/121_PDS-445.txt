@@ -1,0 +1,15 @@
+Document ID: PDS-445
+Type: Product Disclosure Statement
+Product: Home Shield Premium
+
+Coverage Matrix:
+| Section | Coverage Item | Limit (USD) | Excess (USD) | Exclusion |
+| --- | --- | ---: | ---: | --- |
+| A | Accidental Damage | 11671 | 112 | Wear and tear |
+| B | Third Party Liability | 157653 | 982 | Intentional acts |
+| C | Medical Reimbursement | 15551 | 97 | Non-prescribed treatment |
+
+Premium Rules:
+- Base premium adjusted by risk score, claim history, and geography.
+- Monthly payment surcharge applies when annual payment is not selected.
+- Material non-disclosure may void cover or reduce claim payout.

@@ -1,0 +1,183 @@
+{
+  "document_id": "LOG-854",
+  "type": "log",
+  "timestamp": "2026-07-25T18:40:56.814243",
+  "severity": "INFO",
+  "application": "PolicyManagement",
+  "component": "auth-service",
+  "trace_id": "d1026706d7e805da846a32c3bb81e3c2",
+  "span_id": "9b62179273c8eb5b",
+  "cloud": {
+    "platform": "Datacenter",
+    "resource": {
+      "account_id": "dc-001",
+      "region": "onprem-primary",
+      "cluster_name": "dc-core-cluster"
+    }
+  },
+  "k8s": {
+    "k8s.pod.name": "policy-api-775f95f9b4-s9wr2",
+    "k8s.namespace.name": "claims-prod"
+  },
+  "payload": {
+    "duration_ms": 578,
+    "retry_count": 1,
+    "shard_id": "shard-08",
+    "message": "Synthetic operational event for workload monitoring.",
+    "recovery_action": "rejected request because role mapping was missing"
+  }
+}
+---
+Document ID: KB-818
+Type: Knowledge Base
+Title: Updating Beneficiary Info
+
+Overview:
+This article explains the end-to-end flow for policyholders and support agents. Follow
+the sequence exactly to avoid validation failures in the downstream processing queue.
+
+Steps:
+1. Login with registered credentials.
+2. Navigate to Claims -> Submit New Claim.
+3. Upload required documents.
+4. Claims processed within 7 business days.
+
+Troubleshooting:
+- Images should be under 10MB each and use JPG or PDF format.
+- If the portal is unavailable, use the assisted-call workflow with ticket tagging.
+- Images should be under 10MB each and use JPG or PDF format.
+---
+Document ID: POL-646
+Type: Policy
+Title: Access Control Policy
+Owner: Security Council
+Scope: All production workloads
+
+Rules:
+- AES-256 encryption required for data at rest.
+- AES-256 encryption required for data at rest.
+- Critical vulnerabilities patched within 48 hours.
+
+Enforcement:
+1. Build pipelines block merge when critical findings remain open.
+2. Access reviews are completed monthly and audited quarterly.
+3. Exceptions require written sign-off and an expiration date.
+
+Review Cadence:
+This policy is reviewed every 90 days or after any significant security incident.
+---
+Document ID: MEMO-324
+Type: Memo
+Title: Fraud Trends
+Audience: Incident Response Team
+
+Content:
+Teams must patch CVE-2026-12345 within 48 hours.
+
+Additional Notes:
+- Communicate execution milestones in the daily stand-up report.
+- Escalate blockers with dependency details and expected resolution time.
+- Archive supporting evidence for post-implementation review.
+---
+Document ID: POL-941
+Type: Policy
+Title: Customer Data Retention
+Owner: Platform Engineering
+Scope: Customer-facing APIs
+
+Rules:
+- Critical vulnerabilities patched within 48 hours.
+- Retain customer data for 7 years.
+- SAST/DAST scans mandatory before deployment.
+
+Enforcement:
+1. Build pipelines block merge when critical findings remain open.
+2. Access reviews are completed monthly and audited quarterly.
+3. Exceptions require written sign-off and an expiration date.
+
+Review Cadence:
+This policy is reviewed every 90 days or after any significant security incident.
+---
+Document ID: MEMO-997
+Type: Memo
+Title: Fraud Trends
+Audience: Incident Response Team
+
+Content:
+Teams must patch CVE-2026-12345 within 48 hours.
+
+Additional Notes:
+- Communicate execution milestones in the daily stand-up report.
+- Escalate blockers with dependency details and expected resolution time.
+- Archive supporting evidence for post-implementation review.
+---
+Document ID: AUD-505
+Type: Audit Report
+Title: VM Patch Compliance
+Control Family: LOG-03
+Summary: All apps passed baseline scans.
+
+Findings:
+- Evidence was sampled from CI/CD reports, cloud logs, and ticketing records.
+- Two medium-risk items were accepted with mitigation and owner assignments.
+- No high-severity compliance gaps remained open at report publication time.
+
+Next Actions:
+Teams must submit remediation updates within five business days.
+---
+Document ID: KB-242
+Type: Knowledge Base
+Title: Filing Health Insurance Claim
+
+Overview:
+This article explains the end-to-end flow for policyholders and support agents. Follow
+the sequence exactly to avoid validation failures in the downstream processing queue.
+
+Steps:
+1. Login with registered credentials.
+2. Navigate to Claims -> Submit New Claim.
+3. Upload required documents.
+4. Claims processed within 7 business days.
+
+Troubleshooting:
+- Images should be under 10MB each and use JPG or PDF format.
+- Images should be under 10MB each and use JPG or PDF format.
+- Images should be under 10MB each and use JPG or PDF format.
+---
+Document ID: KB-864
+Type: Knowledge Base
+Title: Updating Beneficiary Info
+
+Overview:
+This article explains the end-to-end flow for policyholders and support agents. Follow
+the sequence exactly to avoid validation failures in the downstream processing queue.
+
+Steps:
+1. Login with registered credentials.
+2. Navigate to Claims -> Submit New Claim.
+3. Upload required documents.
+4. Claims processed within 7 business days.
+
+Troubleshooting:
+- For urgent claims, mark severity as high and attach hospitalization records.
+- Images should be under 10MB each and use JPG or PDF format.
+- For urgent claims, mark severity as high and attach hospitalization records.
+---
+Document ID: KB-324
+Type: Knowledge Base
+Title: Filing Health Insurance Claim
+
+Overview:
+This article explains the end-to-end flow for policyholders and support agents. Follow
+the sequence exactly to avoid validation failures in the downstream processing queue.
+
+Steps:
+1. Login with registered credentials.
+2. Navigate to Claims -> Submit New Claim.
+3. Upload required documents.
+4. Claims processed within 7 business days.
+
+Troubleshooting:
+- Images should be under 10MB each and use JPG or PDF format.
+- For urgent claims, mark severity as high and attach hospitalization records.
+- If the portal is unavailable, use the assisted-call workflow with ticket tagging.

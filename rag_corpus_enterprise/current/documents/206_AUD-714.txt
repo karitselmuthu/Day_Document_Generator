@@ -1,0 +1,14 @@
+Document ID: AUD-714
+Type: Audit Report
+Title: Quarterly Internal Controls Review
+Audit Period: 2026-Q2
+Severity Mix: High=0, Medium=4, Low=3
+
+Findings:
+- Root Cause: Outdated privileged access recertification workflow
+- Impact: Regulatory reporting quality may degrade under peak transaction load.
+- Recommendation: Enforce preventive controls in CI/CD and IAM workflows.
+- Target Date: 2026-05-15
+
+Management Response:
+Control owners accepted findings and committed remediation milestones.

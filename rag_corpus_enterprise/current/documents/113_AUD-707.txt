@@ -1,0 +1,14 @@
+Document ID: AUD-707
+Type: Audit Report
+Title: Quarterly Internal Controls Review
+Audit Period: 2026-Q3
+Severity Mix: High=2, Medium=2, Low=5
+
+Findings:
+- Root Cause: Delayed incident closure after policy exception approval
+- Impact: Regulatory reporting quality may degrade under peak transaction load.
+- Recommendation: Enforce preventive controls in CI/CD and IAM workflows.
+- Target Date: 2026-01-15
+
+Management Response:
+Control owners accepted findings and committed remediation milestones.

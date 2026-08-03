@@ -1,0 +1,15 @@
+Document ID: CMP-183
+Type: Customer Complaint File
+Complaint ID: OMB-857401
+
+Complaint Summary:
+Customer submitted formal grievance citing unauthorized overdraft fee after failed transfer.
+
+Remediation Steps:
+1. Complaint acknowledged within 24 hours and assigned case owner.
+2. Root cause analysis completed with evidence from transaction logs.
+3. Financial correction processed where customer detriment confirmed.
+4. Preventive action added to control register and tracked to closure.
+
+Closure Criteria:
+Customer receives written explanation, resolution details, and escalation options.

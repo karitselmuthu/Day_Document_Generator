@@ -1,0 +1,19 @@
+Document ID: DBS-319
+Type: Database Schema
+System: Core Financial Ledger
+
+Tables:
+1. accounts(account_id PK, customer_id, status, opened_at, risk_tier)
+2. transactions(txn_id PK, account_id FK, amount, currency, channel, created_at)
+3. claims(claim_id PK, policy_id, claimant_id, status, reserve_amount, submitted_at)
+4. audit_events(event_id PK, entity_type, entity_id, actor_id, action, event_ts)
+
+Security Metadata:
+- accounts.customer_id encrypted with AES-256 at rest.
+- transactions.amount masked in non-production replicas.
+- audit_events retained for 7 years and immutable by design.
+
+Indexing Notes:
+- btree on transactions(account_id, created_at)
+- gin on audit_events(action)
+- partial index on claims(status) where status in ('open', 'investigating')

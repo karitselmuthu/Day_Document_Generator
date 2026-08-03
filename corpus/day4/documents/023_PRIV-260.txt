@@ -1,0 +1,16 @@
+Document ID: PRIV-260
+Type: Data Privacy Notice
+Jurisdiction: CCPA
+Retention Policy: Customer profile data retained for 7 years after account closure.
+
+Customer Rights:
+1. Right to access personal data and processing rationale.
+2. Right to request correction of inaccurate records.
+3. Right to request deletion subject to legal retention obligations.
+4. Right to restrict or object to certain processing activities.
+5. Right to receive exportable copy of personal data.
+
+Processing Purposes:
+- Fraud prevention and transaction risk scoring
+- Claims lifecycle servicing and legal compliance
+- Product personalization and service quality analytics

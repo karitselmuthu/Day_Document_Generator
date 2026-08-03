@@ -1,0 +1,14 @@
+Document ID: AUD-785
+Type: Audit Report
+Title: Access Governance Audit Findings
+Audit Period: 2026-Q2
+Severity Mix: High=1, Medium=3, Low=5
+
+Findings:
+- Root Cause: Delayed incident closure after policy exception approval
+- Impact: Regulatory reporting quality may degrade under peak transaction load.
+- Recommendation: Enforce preventive controls in CI/CD and IAM workflows.
+- Target Date: 2026-10-15
+
+Management Response:
+Control owners accepted findings and committed remediation milestones.

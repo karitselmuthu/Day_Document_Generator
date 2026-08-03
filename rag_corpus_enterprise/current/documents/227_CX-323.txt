@@ -1,0 +1,15 @@
+Document ID: CX-323
+Type: Anonymized Support Transcript
+Channel: call
+Case ID: CASE-99291
+
+Transcript:
+[00:00] Customer: My transfer failed twice and I was still charged a fee.
+[00:18] Agent: I can help. Let me verify the transaction reference and account status.
+[01:12] Customer: I need the payment processed today for a medical emergency.
+[02:05] Agent: I have reversed the duplicate fee and escalated the transfer to priority queue.
+[03:20] Customer: Please confirm if this impacts my fraud alert status.
+[03:48] Agent: No fraud block is active; you will receive SMS confirmation in 10 minutes.
+
+Outcome:
+Issue resolved with fee reversal and same-day transfer confirmation.

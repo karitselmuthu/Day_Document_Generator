@@ -1,0 +1,70 @@
+Document ID: LOG-125
+Type: Log
+Platform: AWS EKS
+Application: ClaimsProcessing
+Timestamp: 2026-07-25T18:30:32.418524
+Level: INFO
+Message: Synthetic log entry for testing.
+---
+Document ID: POL-242
+Type: Policy
+Title: Access Control Policy
+Rules:
+- Retain customer data for 7 years.
+- Retain customer data for 7 years.
+- AES-256 encryption required for data at rest.
+---
+Document ID: LOG-130
+Type: Log
+Platform: Datacenter
+Application: InsurancePortal
+Timestamp: 2026-07-25T18:30:32.418542
+Level: INFO
+Message: Synthetic log entry for testing.
+---
+Document ID: MEMO-716
+Type: Memo
+Title: Critical CVE Patch Timeline
+Content: Spike in fraudulent health claims, investigation ongoing.
+---
+Document ID: POL-833
+Type: Policy
+Title: Access Control Policy
+Rules:
+- AES-256 encryption required for data at rest.
+- SAST/DAST scans mandatory before deployment.
+- AES-256 encryption required for data at rest.
+---
+Document ID: MEMO-384
+Type: Memo
+Title: Critical CVE Patch Timeline
+Content: Teams must patch CVE-2026-12345 within 48 hours.
+---
+Document ID: AUD-448
+Type: Audit Report
+Title: Access Control Audit
+Summary: All apps passed baseline scans.
+---
+Document ID: POL-881
+Type: Policy
+Title: Secure Coding & Deployment
+Rules:
+- Retain customer data for 7 years.
+- Retain customer data for 7 years.
+- AES-256 encryption required for data at rest.
+---
+Document ID: LOG-467
+Type: Log
+Platform: Azure VM
+Application: PolicyManagement
+Timestamp: 2026-07-25T18:30:32.418558
+Level: WARN
+Message: Synthetic log entry for testing.
+---
+Document ID: LOG-847
+Type: Log
+Platform: Azure VM
+Application: PolicyManagement
+Timestamp: 2026-07-25T18:30:32.418562
+Level: INFO
+Message: Synthetic log entry for testing.

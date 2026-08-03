@@ -1,0 +1,29 @@
+{
+  "document_id": "LOG-703",
+  "type": "log",
+  "timestamp": "2026-07-28T16:31:36.452555",
+  "severity": "WARN",
+  "application": "InsurancePortal",
+  "component": "claim-worker",
+  "trace_id": "da846a32c3bb81e3c29b62179273c8eb",
+  "span_id": "5bb682575ec87a17",
+  "cloud": {
+    "platform": "AWS EKS",
+    "resource": {
+      "account_id": "aws-prod-7145",
+      "region": "ap-south-1",
+      "cluster_name": "eks-claims-prod"
+    }
+  },
+  "k8s": {
+    "k8s.pod.name": "claim-worker-6f94d6b6f5-2gv7k",
+    "k8s.namespace.name": "policy-prod"
+  },
+  "payload": {
+    "duration_ms": 422,
+    "retry_count": 3,
+    "shard_id": "shard-08",
+    "message": "Synthetic operational event for workload monitoring.",
+    "recovery_action": "detected stale session token and triggered re-auth flow"
+  }
+}
